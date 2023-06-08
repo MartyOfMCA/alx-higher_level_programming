@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 
-import sys
+from sys import argv
 from calculator_1 import add, div, mul, sub
 
 if (__name__ == "__main__"):
-    argc = len(sys.argv) - 1
+    argc = len(argv) - 1
     fmt = ""
     op1 = 0
     op2 = 0
@@ -12,9 +12,9 @@ if (__name__ == "__main__"):
     opcode = ""
 
     if (argc == 3):
-        op1 = int(sys.argv[1])
-        opcode = sys.argv[2]
-        op2 = int(sys.argv[3])
+        op1 = int(argv[1])
+        opcode = argv[2]
+        op2 = int(argv[3])
 
         fmt = "{:d} {} {:d} = ".format(op1, opcode, op2)
 
@@ -28,10 +28,10 @@ if (__name__ == "__main__"):
             result = div(op1, op2)
         else:
             print("Unknown operator. Available operators: +, -, * and /")
-            sys.exit(1)
+            exit(1)
 
         fmt += "{:d}".format(result)
         print(fmt)
     else:
-        print("Usage: {} <a> <operator> <b>".format(sys.argv[0]))
-        sys.exit(1)
+        print("Usage: {} <a> <operator> <b>".format(argv[0]))
+        exit(1)
