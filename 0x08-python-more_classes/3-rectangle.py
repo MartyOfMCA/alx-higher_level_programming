@@ -93,7 +93,7 @@ class Rectangle:
         return (perimeter)
 
     def __str__(self):
-        """ Returns a string representation for a rectable """
+        """ Returns a string representation for a rectangle """
         obj_str = ""
 
         if (self.__width == 0 or self.__height == 0):
