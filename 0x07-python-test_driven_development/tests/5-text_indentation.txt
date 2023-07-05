@@ -5,21 +5,21 @@ Defines test cases for the ``text_indentation`` function in the ``5-text_indenta
 
 # Test case for a valid text as a string (with spaces after delimiters)
 >>> text_indentation("Man. Animal? Cat: Lion")
-Man
+Man.
 <BLANKLINE>
-Animal
+Animal?
 <BLANKLINE>
-Cat
+Cat:
 <BLANKLINE>
 Lion
 
 # Test case for a valid text as a string (without spaces after delimiter)
 >>> text_indentation("Man.Animal?Cat:Lion")
-Man
+Man.
 <BLANKLINE>
-Animal
+Animal?
 <BLANKLINE>
-Cat
+Cat:
 <BLANKLINE>
 Lion
 
@@ -28,3 +28,29 @@ Lion
 Traceback (most recent call last):
 ...
 TypeError: text must be a string
+
+# Test case for no argument
+>>> text_indentation()
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+# Test case for a valid string
+>>> text_indentation("Holberton School")
+Holberton School
+
+# Test case for a valid string
+>>> text_indentation("Holberton.School")
+Holberton.
+<BLANKLINE>
+School
+
+# Test case for a valid string
+>>> text_indentation("Holberton. School? How are you:    John")
+Holberton.
+<BLANKLINE>
+School?
+<BLANKLINE>
+How are you:
+<BLANKLINE>
+John

@@ -13,7 +13,7 @@ Martin
 """
 
 
-def text_indentation(text):
+def text_indentation(text=""):
     """
     Prints text in a given string.
 
@@ -29,16 +29,16 @@ def text_indentation(text):
     delimiters = (".", "?", ":")
     skip_flag = False
 
-    if (type(text) is not str):
+    if (type(text) is not str or text == ""):
         raise TypeError("text must be a string")
 
     for character in text:
         if (character in delimiters):
             skip_flag = True
-            print("\n")
+            print("{}\n".format(character))
             continue
         if (skip_flag is True and character == " "):
-            skip_flag = False
             continue
+        else:
+            skip_flag = False
         print(character, end="")
-    print()
