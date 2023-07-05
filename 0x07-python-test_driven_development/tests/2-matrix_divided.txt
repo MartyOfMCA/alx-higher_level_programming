@@ -74,3 +74,7 @@ TypeError: Each row of the matrix must have the same size
 Traceback (most recent call last):
 ...
 TypeError: Each row of the matrix must have the same size
+
+# Test for missing both arguments
+>>> matrix_divided()
+[[1.0]]

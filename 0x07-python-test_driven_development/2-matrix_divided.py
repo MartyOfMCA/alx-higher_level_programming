@@ -33,7 +33,7 @@ TypeError: matrix must be a matrix (list of lists) of integers/floats
 """
 
 
-def matrix_divided(matrix, div):
+def matrix_divided(matrix=[[1]], div=1):
     """
     Divides all the elements of the given matrix
     by a dividend.
