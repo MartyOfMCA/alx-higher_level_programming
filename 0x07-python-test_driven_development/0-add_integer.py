@@ -21,6 +21,9 @@ def add_integer(num1, num2=98):
     TypeError
         When any of the given parameters is not
         either an integer or a float
+    ValueError
+        When any of the given parameters is the
+        floating value NaN
 
     Return : The sum of the two given numbers as an
     integer
@@ -34,5 +37,8 @@ def add_integer(num1, num2=98):
         else:
             message = "b must be an integer"
         raise TypeError(message)
+
+    if (num1 != num1 or num2 != num2):
+        raise ValueError("cannot convert float NaN to integer")
 
     return (int(num1) + int(num2))
