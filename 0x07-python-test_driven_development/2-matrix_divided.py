@@ -33,18 +33,19 @@ TypeError: matrix must be a matrix (list of lists) of integers/floats
 """
 
 
-def matrix_divided(matrix=[[1]], div=1):
+def matrix_divided(matrix=[[]], div=1):
     """
     Divides all the elements of the given matrix
     by a dividend.
 
     Parameters
-    matrix : list
+    matrix : list, optional
         A list composed of a list of integres or floats
-        with even number of columns for each row
-    div : interger / float
+        with even number of columns for each row. The
+        default value is [[0]].
+    div : interger / float, optional
         The number to be used in dividing elements in
-        matrix
+        matrix. The default value is 0.
 
     Raises
     TypeError
