@@ -22,13 +22,13 @@ def add_integer(num1, num2=98):
         When any of the given parameters is not
         either an integer or a float
 
-    Return : The sum of the two given numbers as an 
+    Return : The sum of the two given numbers as an
     integer
     """
 
     message = None
 
-    if (type(num1) not in(int, float) or type(num2) not in (int, float)):
+    if (type(num1) not in (int, float) or type(num2) not in (int, float)):
         if (type(num1) not in (int, float)):
             message = "a must be an integer"
         else:
