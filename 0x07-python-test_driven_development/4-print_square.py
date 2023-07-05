@@ -11,7 +11,7 @@ This module defines the print_square function
 """
 
 
-def print_square(size):
+def print_square(size=0):
     """
     Prints a square from the given size
 
@@ -30,6 +30,8 @@ def print_square(size):
     conv = size
     row, col = 0, 0
 
+    if (size == 0):
+        return (None)
     if (type(size) not in (float, int)):
         raise TypeError("size must be an integer")
     if (type(size) is float):

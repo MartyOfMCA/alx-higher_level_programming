@@ -33,3 +33,6 @@ TypeError: size must be an integer
 Traceback (most recent call last):
 ...
 TypeError: size must be an integer
+
+# Test case for no positional parameters
+>>> print_square()
