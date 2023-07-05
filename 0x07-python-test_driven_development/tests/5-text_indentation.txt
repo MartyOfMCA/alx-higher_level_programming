@@ -1,0 +1,30 @@
+Defines test cases for the ``text_indentation`` function in the ``5-text_indentation`` module
+
+# Import module for text_indentation
+>>> text_indentation = __import__("5-text_indentation").text_indentation
+
+# Test case for a valid text as a string (with spaces after delimiters)
+>>> text_indentation("Man. Animal? Cat: Lion")
+Man
+<BLANKLINE>
+Animal
+<BLANKLINE>
+Cat
+<BLANKLINE>
+Lion
+
+# Test case for a valid text as a string (without spaces after delimiter)
+>>> text_indentation("Man.Animal?Cat:Lion")
+Man
+<BLANKLINE>
+Animal
+<BLANKLINE>
+Cat
+<BLANKLINE>
+Lion
+
+# Test case for an invalid text
+>>> text_indentation(None)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
