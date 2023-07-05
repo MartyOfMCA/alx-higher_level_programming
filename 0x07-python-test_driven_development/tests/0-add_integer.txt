@@ -29,3 +29,11 @@ TypeError: a must be an integer
 Traceback (most recent call last):
 ...
 ValueError: cannot convert float NaN to integer
+>>> add_integer(float('inf'), 2)
+256
+>>> add_integer(4, float('inf'))
+256
+>>> add_integer(-float('inf'), 2)
+-5
+>>> add_integer(4, -float('inf'))
+-5

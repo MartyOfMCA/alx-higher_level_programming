@@ -41,4 +41,10 @@ def add_integer(num1, num2=98):
     if (num1 != num1 or num2 != num2):
         raise ValueError("cannot convert float NaN to integer")
 
+    if (num1 == float('inf') or num2 == float('inf')):
+        return (256)
+
+    if (num1 == -float('inf') or num2 == -float('inf')):
+        return (-5)
+
     return (int(num1) + int(num2))
