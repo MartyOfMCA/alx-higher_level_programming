@@ -28,3 +28,19 @@ TypeError: last_name must be a string
 Traceback (most recent call last):
 ...
 TypeError: first_name must be a string
+
+# Test for only the last name
+>>> say_my_name(last_name="Amankwaa")
+My name is  Amankwaa
+
+# Test for an empty first name only
+>>> say_my_name("")
+Traceback (most recent call last):
+...
+ValueError: No name passed: say_my_name(first_name, last_name)
+
+# Test for no positional arguments
+>>> say_my_name()
+Traceback (most recent call last):
+...
+ValueError: No name passed: say_my_name(first_name, last_name)
