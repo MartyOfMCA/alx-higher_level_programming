@@ -1,0 +1,30 @@
+Defines test cases for the ``say_my_name`` function in the ``3-say_my_name`` module
+
+# Import module for say_my_name
+>>> say_my_name = __import__("3-say_my_name").say_my_name
+
+# Test for a valid first and last name
+>>> say_my_name("Martin", "Amankwaa")
+My name is Martin Amankwaa
+
+# Test for a single valid name (first name)
+>>> say_my_name("Martin")
+My name is Martin 
+
+# Test for invalid first name and a valid last name
+>>> say_my_name(1, "Amankwaa")
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+# Test for a valid first name and an invalid last name
+>>> say_my_name("Martin", 1)
+Traceback (most recent call last):
+...
+TypeError: last_name must be a string
+
+# Test for a single invalid name that's given (first name)
+>>> say_my_name(2)
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
