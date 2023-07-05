@@ -1,0 +1,35 @@
+Defins test cases for the ``print_square`` function in the ``4-print_square`` module
+
+# Import module for print_square
+>>> print_square = __import__("4-print_square").print_square
+
+# Test for a valid size
+>>> print_square(4)
+####
+####
+####
+####
+
+# Test for an invalid type for size
+>>> print_square("4")
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+# Test for a negative size
+>>> print_square(-999)
+Traceback (most recent call last):
+...
+ValueError: size must be >= 0
+
+# Test case for a floating value of 0 for size
+>>> print_square(-0.02)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+# Test case for size being None
+>>> print_square(None)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
