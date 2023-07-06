@@ -38,3 +38,6 @@ class TestMaxInteger(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.__max_integer(20)
             self.__max_integer(7.9)
+
+    def test_first_item_is_max(self):
+        self.assertEqual(self.__max_integer([8, 2, 1]), 8)
