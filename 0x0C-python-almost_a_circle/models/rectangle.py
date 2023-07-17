@@ -131,7 +131,14 @@ class Rectangle(Base):
         """
         points = 0
 
+        for increment in range(0, self.y, 1):
+            points += 1
+            print()
+
         for row in range(0, self.height, 1):
+            for increment in range(0, self.x, 1):
+                points += 1
+                print(" ", end="")
             for col in range(0, self.width, 1):
                 points += 1
                 print("#", end="")
