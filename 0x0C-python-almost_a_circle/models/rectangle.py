@@ -125,7 +125,10 @@ class Rectangle(Base):
         return (self.width * self.height)
 
     def display(self):
-        """ Print the rectangle """
+        """
+        Print the rectangle
+        Return : The number of points printed for the shape.
+        """
         points = 0
 
         for row in range(0, self.height, 1):
@@ -135,3 +138,10 @@ class Rectangle(Base):
             print()
 
         return (points)
+
+    def __str__(self):
+        """
+        Returns the string representation of the rectangle.
+        """
+        return ("[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x,
+                self.y, self.width, self.height))

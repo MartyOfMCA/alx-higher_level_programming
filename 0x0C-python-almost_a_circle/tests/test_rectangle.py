@@ -77,3 +77,15 @@ class TestRectangle(unittest.TestCase):
     def test_display(self):
         rect = Rectangle(1, 1, 1, 1, 10)
         self.assertEqual(1, rect.display())
+
+    def test_magic_str_with_valid_values(self):
+        rect = Rectangle(10, 5, 1, 1, 10)
+        self.assertEqual("[Rectangle] (10) 1/1 - 10/5", str(rect))
+
+    def test_magic_str_without_axis_nor_id(self):
+        rect = Rectangle(10, 5)
+        self.assertEqual("[Rectangle] (7) 0/0 - 10/5", str(rect))
+
+    def test_magic_str_without_id(self):
+        rect = Rectangle(10, 5, 1, 1)
+        self.assertEqual("[Rectangle] (8) 1/1 - 10/5", str(rect))
