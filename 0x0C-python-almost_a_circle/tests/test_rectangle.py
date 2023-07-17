@@ -69,3 +69,11 @@ class TestRectangle(unittest.TestCase):
     def test_no_positional_arg_provided(self):
         with self.assertRaises(TypeError):
             rect = Rectangle()
+
+    def test_area(self):
+        rect = Rectangle(10, 5, 1, 1, 10)
+        self.assertEqual(50, rect.area())
+
+    def test_display(self):
+        rect = Rectangle(1, 1, 1, 1, 10)
+        self.assertEqual(1, rect.display())

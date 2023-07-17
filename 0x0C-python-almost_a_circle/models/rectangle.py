@@ -123,3 +123,15 @@ class Rectangle(Base):
     def area(self):
         """ Return the area for the rectangle """
         return (self.width * self.height)
+
+    def display(self):
+        """ Print the rectangle """
+        points = 0
+
+        for row in range(0, self.height, 1):
+            for col in range(0, self.width, 1):
+                points += 1
+                print("#", end="")
+            print()
+
+        return (points)
