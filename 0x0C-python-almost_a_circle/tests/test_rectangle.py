@@ -118,3 +118,28 @@ class TestRectangle(unittest.TestCase):
         rect = Rectangle(10, 10, 10, 10)
         rect.update(89, 2, 3, 4, 5)
         self.assertEqual("[Rectangle] (89) 4/5 - 2/3", str(rect))
+
+    def test_update_with_one_args_and_kwargs(self):
+        rect = Rectangle(10, 10, 10, 10)
+        rect.update(5, width=990)
+        self.assertEqual("[Rectangle] (5) 10/10 - 10/10", str(rect))
+
+    def test_update_with_empty_args_and_one_kwargs(self):
+        rect = Rectangle(10, 10, 10, 10)
+        rect.update((), width=990)
+        self.assertEqual("[Rectangle] (10) 10/10 - 990/10", str(rect))
+
+    def test_update_with_empty_args_and_two_kwargs(self):
+        rect = Rectangle(10, 10, 10, 10)
+        rect.update((), width=990, id=1)
+        self.assertEqual("[Rectangle] (1) 10/10 - 990/10", str(rect))
+
+    def test_update_with_two_args_and_one_kwargs(self):
+        rect = Rectangle(10, 10, 10, 10)
+        rect.update(4, 5, width=990)
+        self.assertEqual("[Rectangle] (4) 10/10 - 5/10", str(rect))
+
+    def test_update_with_all_args_and_all_kwargs(self):
+        rect = Rectangle(10, 10, 10, 10)
+        rect.update(1, 1, 1, 1, 1, id=19, width=19, height=19, x=19, y=19)
+        self.assertEqual("[Rectangle] (1) 1/1 - 1/1", str(rect))
