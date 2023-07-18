@@ -50,6 +50,10 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             rect = Rectangle(-10, 5, 1, 1, 10)
 
+    def test_width_from_zero_value(self):
+        with self.assertRaises(ValueError):
+            rect = Rectangle(0, 5, 1, 1, 1)
+
     def test_height_from_zero_value(self):
         with self.assertRaises(ValueError):
             rect = Rectangle(10, 0, 1, 1, 10)
