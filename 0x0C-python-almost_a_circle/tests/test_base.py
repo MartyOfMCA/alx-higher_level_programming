@@ -2,6 +2,7 @@
 """ This module defines a test class for the Base class """
 import unittest
 from models.base import Base
+from models.rectangle import Rectangle
 
 
 class TestBase(unittest.TestCase):
@@ -42,3 +43,10 @@ class TestBase(unittest.TestCase):
         base = Base(-1)
         base2 = Base(-2)
         self.assertEqual(-2, base2.id)
+
+    def test_to_json_string(self):
+        rect = Rectangle(10, 7, 2, 8, 1)
+        dictionary = rect.to_dictionary()
+        json_dictionary = Base.to_json_string([dictionary])
+        self.assertEqual(sorted('[{"x": 2, "width": 10, "id": 1, "height": 7'
+                                ', "y": 8}]'), sorted(json_dictionary))
