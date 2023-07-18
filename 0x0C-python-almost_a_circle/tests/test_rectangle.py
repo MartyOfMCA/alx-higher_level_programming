@@ -127,7 +127,7 @@ class TestRectangle(unittest.TestCase):
     def test_update_with_empty_args_and_one_kwargs(self):
         rect = Rectangle(10, 10, 10, 10)
         rect.update((), width=990)
-        self.assertEqual("[Rectangle] (10) 10/10 - 990/10", str(rect))
+        self.assertEqual("[Rectangle] (12) 10/10 - 990/10", str(rect))
 
     def test_update_with_empty_args_and_two_kwargs(self):
         rect = Rectangle(10, 10, 10, 10)
@@ -149,3 +149,15 @@ class TestRectangle(unittest.TestCase):
         actual = rect.to_dictionary()
         self.assertEqual({"id": 1, "width": 10, "height": 2, "x": 1,
                          "y": 1}, actual)
+
+    def test_to_dictionary_with_only_width_and_height_specified(self):
+        rect = Rectangle(10, 2)
+        actual = rect.to_dictionary()
+        self.assertEqual({"id": 10, "width": 10, "height": 2, "x": 0,
+                         "y": 0}, actual)
+
+    def test_to_dictionary_with_no_id_specified(self):
+        rect = Rectangle(10, 2, 9, 9)
+        actual = rect.to_dictionary()
+        self.assertEqual({"id": 9, "width": 10, "height": 2, "x": 9,
+                         "y": 9}, actual)
