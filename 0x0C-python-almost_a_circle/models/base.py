@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ This module defines the Base class """
 import json
-from os.path import isfile
 
 
 class Base:
@@ -80,3 +79,26 @@ class Base:
         if (json_string is None or json_string == ""):
             return ([])
         return (json.loads(json_string))
+
+    @classmethod
+    def create(cls, **dictionary):
+        """
+        Create an instance for a class with attributes
+        from the specified argument.
+
+        Parameters
+        dictionary : dictionary
+            Keyword arguments with attributes for the instance
+            being created
+
+        Return : An instance for a class with attributes
+        """
+        instance = None
+
+        if (cls.__name__ == "Rectangle"):
+            instance = cls(5, 2)
+        else:
+            instance = cls(1)
+        instance.update(**dictionary)
+
+        return (instance)

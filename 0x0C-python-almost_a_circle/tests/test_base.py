@@ -14,7 +14,7 @@ class TestBase(unittest.TestCase):
 
     def test_single_obj_without_id(self):
         base = Base()
-        self.assertEqual(1, base.id)
+        self.assertEqual(4, base.id)
 
     def test_two_obj_with_id(self):
         base = Base(10)
@@ -24,7 +24,7 @@ class TestBase(unittest.TestCase):
     def test_two_obj_with_first_id(self):
         base = Base(5)
         base2 = Base()
-        self.assertEqual(2, base2.id)
+        self.assertEqual(5, base2.id)
 
     def test_two_obj_with_second_id(self):
         base = Base()
@@ -34,7 +34,7 @@ class TestBase(unittest.TestCase):
     def test_two_obj_without_ids(self):
         base = Base()
         base2 = Base()
-        self.assertEqual(5, base2.id)
+        self.assertEqual(8, base2.id)
 
     def test_single_obj_with_neg_id(self):
         base = Base(-5)
@@ -77,14 +77,14 @@ class TestBase(unittest.TestCase):
         output = Rectangle.from_json_string("")
         self.assertEqual([], output)
 
-    def test_save_to_file_with_two_rectangle_objects_two(self):
-        rect1 = Rectangle(10, 7, 2, 8, 1)
-        rect2 = Rectangle(2, 4, 1, 1, 2)
-        file_contents = ""
-        Rectangle.save_to_file([rect1, rect2])
-        with open("Rectangle.json", "r") as file:
-            file_contents = file.read()
-        self.assertEqual(sorted('[{"y": 8, "x": 2, "id": 1, "width": 10, '
-                                '"height": 7}, {"y": 1, "x": 1, "id": 2, '
-                                '"width": 2, "height": 4}]'),
-                         sorted(file_contents))
+    def test_create_rectangle(self):
+        rect = Rectangle(3, 5, 1, 1)
+        obj_dict = rect.to_dictionary()
+        rect2 = Rectangle.create(**obj_dict)
+        self.assertEqual("[Rectangle] (1) 1/1 - 3/5", str(rect2))
+
+    def test_create_square(self):
+        square = Square(3, 5, 1, 1)
+        obj_dict = square.to_dictionary()
+        square2 = Square.create(**obj_dict)
+        self.assertEqual("[Square] (1) 5/1 - 3", str(square2))

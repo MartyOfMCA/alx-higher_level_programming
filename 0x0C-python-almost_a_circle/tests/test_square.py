@@ -40,7 +40,7 @@ class TestSquare(unittest.TestCase):
 
     def test_id_without_obj_id(self):
         square = Square(10, 1, 1)
-        self.assertEqual(23, square.id)
+        self.assertEqual(26, square.id)
 
     def test_id_from_invalid_value(self):
         with self.assertRaises(ValueError):
@@ -131,12 +131,12 @@ class TestSquare(unittest.TestCase):
     def test_update_with_empty_args_and_one_kwargs(self):
         square = Square(5)
         square.update((), size=10)
-        self.assertEqual("[Square] (30) 0/0 - 10", str(square))
+        self.assertEqual("[Square] (33) 0/0 - 10", str(square))
 
     def test_update_with_empty_args_and_two_kwargs(self):
         square = Square(5)
         square.update(x=3, y=4)
-        self.assertEqual("[Square] (31) 3/4 - 5", str(square))
+        self.assertEqual("[Square] (34) 3/4 - 5", str(square))
 
     def test_update_with_two_args_and_one_kwargs(self):
         square = Square(5)
@@ -156,9 +156,9 @@ class TestSquare(unittest.TestCase):
     def test_to_dictionary_with_only_size_specified(self):
         square = Square(10)
         actual = square.to_dictionary()
-        self.assertEqual({"id": 29, "size": 10, "x": 0, "y": 0}, actual)
+        self.assertEqual({"id": 32, "size": 10, "x": 0, "y": 0}, actual)
 
     def test_to_dictionary_with_no_id_specified(self):
         square = Square(10, 9, 9)
         actual = square.to_dictionary()
-        self.assertEqual({"id": 28, "size": 10, "x": 9, "y": 9}, actual)
+        self.assertEqual({"id": 31, "size": 10, "x": 9, "y": 9}, actual)

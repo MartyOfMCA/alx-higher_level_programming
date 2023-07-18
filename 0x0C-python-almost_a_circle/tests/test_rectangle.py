@@ -44,7 +44,7 @@ class TestRectangle(unittest.TestCase):
 
     def test_id_without_obj_id(self):
         rect = Rectangle(10, 5, 1, 1)
-        self.assertEqual(6, rect.id)
+        self.assertEqual(9, rect.id)
 
     def test_width_from_invalid_value(self):
         with self.assertRaises(ValueError):
@@ -84,11 +84,11 @@ class TestRectangle(unittest.TestCase):
 
     def test_magic_str_without_axis_nor_id(self):
         rect = Rectangle(10, 5)
-        self.assertEqual("[Rectangle] (7) 0/0 - 10/5", str(rect))
+        self.assertEqual("[Rectangle] (10) 0/0 - 10/5", str(rect))
 
     def test_magic_str_without_id(self):
         rect = Rectangle(10, 5, 1, 1)
-        self.assertEqual("[Rectangle] (8) 1/1 - 10/5", str(rect))
+        self.assertEqual("[Rectangle] (11) 1/1 - 10/5", str(rect))
 
     def test_display_with_padding(self):
         rect = Rectangle(1, 1, 1, 1, 10)
@@ -127,7 +127,7 @@ class TestRectangle(unittest.TestCase):
     def test_update_with_empty_args_and_one_kwargs(self):
         rect = Rectangle(10, 10, 10, 10)
         rect.update((), width=990)
-        self.assertEqual("[Rectangle] (12) 10/10 - 990/10", str(rect))
+        self.assertEqual("[Rectangle] (15) 10/10 - 990/10", str(rect))
 
     def test_update_with_empty_args_and_two_kwargs(self):
         rect = Rectangle(10, 10, 10, 10)
@@ -153,11 +153,11 @@ class TestRectangle(unittest.TestCase):
     def test_to_dictionary_with_only_width_and_height_specified(self):
         rect = Rectangle(10, 2)
         actual = rect.to_dictionary()
-        self.assertEqual({"id": 10, "width": 10, "height": 2, "x": 0,
+        self.assertEqual({"id": 13, "width": 10, "height": 2, "x": 0,
                          "y": 0}, actual)
 
     def test_to_dictionary_with_no_id_specified(self):
         rect = Rectangle(10, 2, 9, 9)
         actual = rect.to_dictionary()
-        self.assertEqual({"id": 9, "width": 10, "height": 2, "x": 9,
+        self.assertEqual({"id": 12, "width": 10, "height": 2, "x": 9,
                          "y": 9}, actual)
