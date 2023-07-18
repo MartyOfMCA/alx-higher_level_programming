@@ -2,6 +2,7 @@
 """ This module defines a test class for the Rectangle class """
 import unittest
 from models.rectangle import Rectangle
+from os.path import isfile
 
 
 class TestRectangle(unittest.TestCase):
@@ -169,3 +170,10 @@ class TestRectangle(unittest.TestCase):
         actual = rect.to_dictionary()
         self.assertEqual({"id": 17, "width": 10, "height": 2, "x": 9,
                          "y": 9}, actual)
+
+    def test_save_to_file_with_none(self):
+        text = ""
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json") as file:
+            text = file.read()
+        self.assertEqual("[]", text)
