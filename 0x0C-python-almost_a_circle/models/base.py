@@ -67,19 +67,16 @@ class Base:
             file.write(Base.to_json_string(obj_list))
 
     @staticmethod
-    def file_exists(file_names):
+    def from_json_string(json_string):
         """
-        Determines whether the given file exists
+        Converts the given string to appropriate object.
 
         Parameters
-        file_names : list
-            A list of file names to be checked
+        json_string : string
+            The JSON string to decode
 
-        Return : True when the list of files are valid
-        files that exists. Otherwise False.
+        Return : The object for the JSON string
         """
-        for file_name in file_names:
-            if (not isfile(file_name)):
-                return (False)
-
-        return (True)
+        if (json_string is None or json_string == ""):
+            return ([])
+        return (json.loads(json_string))

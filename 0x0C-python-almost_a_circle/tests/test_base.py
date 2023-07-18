@@ -60,28 +60,31 @@ class TestBase(unittest.TestCase):
         json_string = Base.to_json_string({})
         self.assertEqual("[]", json_string)
 
-    def test_save_to_file_with_two_rectangle_objects(self):
-        rect1 = Rectangle(1, 1, 1, 1, 1)
-        rect2 = Rectangle(2, 2, 2, 2, 2)
+    def test_from_json_string_from_valid_string(self):
+        list_input = [
+            {'id': 89, 'width': 10, 'height': 4},
+            {'id': 7, 'width': 1, 'height': 7}
+        ]
+        json_str = Rectangle.to_json_string(list_input)
+        output = Rectangle.from_json_string(json_str)
+        self.assertEqual(list_input, output)
+
+    def test_from_json_string_from_none(self):
+        output = Rectangle.from_json_string(None)
+        self.assertEqual([], output)
+
+    def test_from_json_string_from_empty(self):
+        output = Rectangle.from_json_string("")
+        self.assertEqual([], output)
+
+    def test_save_to_file_with_two_rectangle_objects_two(self):
+        rect1 = Rectangle(10, 7, 2, 8, 1)
+        rect2 = Rectangle(2, 4, 1, 1, 2)
+        file_contents = ""
         Rectangle.save_to_file([rect1, rect2])
-        actual = Base.file_exists(["Rectangle.json"])
-        self.assertTrue(actual)
-
-    def test_save_to_file_with_one_rectangle_object(self):
-        rect = Rectangle(1, 1, 1, 1, 1)
-        Rectangle.save_to_file([rect])
-        actual = Base.file_exists(["Rectangle.json"])
-        self.assertTrue(actual)
-
-    def test_save_to_file_with_two_square_objects(self):
-        square1 = Square(1, 1, 1, 1)
-        square2 = Square(2, 2, 2, 2)
-        Square.save_to_file([square1, square2])
-        actual = Base.file_exists(["Square.json"])
-        self.assertTrue(actual)
-
-    def test_save_to_file_with_one_square_object(self):
-        square = Square(1, 1, 1, 1)
-        Square.save_to_file([square])
-        actual = Base.file_exists(["Square.json"])
-        self.assertTrue(actual)
+        with open("Rectangle.json", "r") as file:
+            file_contents = file.read()
+        self.assertEqual(sorted('[{"y": 8, "x": 2, "id": 1, "width": 10, '
+                                '"height": 7}, {"y": 1, "x": 1, "id": 2, '
+                                '"width": 2, "height": 4}]'),
+                         sorted(file_contents))
