@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ This module defines the Base class """
 import json
+from os.path import isfile
 
 
 class Base:
@@ -41,3 +42,44 @@ class Base:
             return ("[]")
 
         return (json.dumps(list_dictionaries))
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        """
+        Writes the JSON string representation of the
+        given arguments to a file.
+
+        Parameters
+        list_objs : list
+            The list of objects to be encoded to JSON string
+        """
+        file = None
+        file_name = "{}.json".format(cls.__name__)
+        obj_dict = {}
+        obj_list = []
+
+        if (list_objs is not None):
+            for obj in list_objs:
+                obj_dict = obj.to_dictionary()
+                obj_list.append(obj_dict)
+
+        with open(file_name, "w") as file:
+            file.write(Base.to_json_string(obj_list))
+
+    @staticmethod
+    def file_exists(file_names):
+        """
+        Determines whether the given file exists
+
+        Parameters
+        file_names : list
+            A list of file names to be checked
+
+        Return : True when the list of files are valid
+        files that exists. Otherwise False.
+        """
+        for file_name in file_names:
+            if (not isfile(file_name)):
+                return (False)
+
+        return (True)
