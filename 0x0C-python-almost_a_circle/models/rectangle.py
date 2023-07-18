@@ -152,3 +152,22 @@ class Rectangle(Base):
         """
         return ("[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x,
                 self.y, self.width, self.height))
+
+    def update(self, *args):
+        """
+        Update the rectangle attributes
+
+        Parameters
+        args : tuple
+            Values for rectangle attributes
+        """
+        if (len(args) == 1):
+            self.id, = args
+        elif (len(args) == 2):
+            self.id, self.width = args
+        elif (len(args) == 3):
+            self.id, self.width, self.height = args
+        elif (len(args) == 4):
+            self.id, self.width, self.height, self.x = args
+        else:
+            self.id, self.width, self.height, self.x, self.y = args
