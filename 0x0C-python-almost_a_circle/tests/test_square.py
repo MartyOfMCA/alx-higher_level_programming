@@ -71,6 +71,18 @@ class TestSquare(unittest.TestCase):
         square.size = 10
         self.assertEqual(10, square.size)
 
+    def test_size_attribute_with_valid_size_from_init(self):
+        square = Square(10)
+        self.assertEqual(10, square.size)
+
+    def test_width_attribute_with_valid_size(self):
+        square = Square(5)
+        self.assertEqual(10, square.width)
+
+    def test_height_attribute_with_valid_size(self):
+        square = Square(5)
+        self.assertEqual(10, square.height)
+
     def test_width_attribute_with_valid_size(self):
         square = Square(5)
         square.size = 10
@@ -90,3 +102,48 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(ValueError):
             square = Square(5)
             square.size = 0
+
+    def test_update_with_one_arg(self):
+        square = Square(5)
+        square.update(10)
+        self.assertEqual("[Square] (10) 0/0 - 5", str(square))
+
+    def test_update_with_two_args(self):
+        square = Square(5)
+        square.update(1, 2)
+        self.assertEqual("[Square] (1) 0/0 - 2", str(square))
+
+    def test_update_with_three_args(self):
+        square = Square(5)
+        square.update(1, 2, 3)
+        self.assertEqual("[Square] (1) 3/0 - 2", str(square))
+
+    def test_update_with_four_args(self):
+        square = Square(5)
+        square.update(1, 2, 3, 4)
+        self.assertEqual("[Square] (1) 3/4 - 2", str(square))
+
+    def test_update_with_one_args_and_kwargs(self):
+        square = Square(5)
+        square.update(10, size=990)
+        self.assertEqual("[Square] (10) 0/0 - 5", str(square))
+
+    def test_update_with_empty_args_and_one_kwargs(self):
+        square = Square(5)
+        square.update((), size=10)
+        self.assertEqual("[Square] (27) 0/0 - 10", str(square))
+
+    def test_update_with_empty_args_and_two_kwargs(self):
+        square = Square(5)
+        square.update(x=3, y=4)
+        self.assertEqual("[Square] (28) 3/4 - 5", str(square))
+
+    def test_update_with_two_args_and_one_kwargs(self):
+        square = Square(5)
+        square.update(2, 3, size=990)
+        self.assertEqual("[Square] (2) 0/0 - 3", str(square))
+
+    def test_update_with_all_args_and_all_kwargs(self):
+        square = Square(5)
+        square.update(100, 50, 1, 1, size=100, id=200, x=99, y=99)
+        self.assertEqual("[Square] (100) 1/1 - 50", str(square))
