@@ -73,3 +73,15 @@ class Square(Rectangle):
                 else self.x
             self.y = kwargs.get("y") if kwargs.get("y") is not None \
                 else self.y
+
+    def to_dictionary(self):
+        """
+        Returns dictionary representation for instance
+        of a square.
+        """
+        return {
+                "x": self.x,
+                "y": self.y,
+                "id": self.id,
+                "size": self.width
+        }

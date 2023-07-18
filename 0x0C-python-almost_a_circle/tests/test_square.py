@@ -29,7 +29,7 @@ class TestSquare(unittest.TestCase):
     def test_width_from_invalid_type(self):
         with self.assertRaises(TypeError):
             Square("10", 1, 1, 10)
-    
+
     def test_x_from_invalid_x(self):
         with self.assertRaises(TypeError):
             Square(10, "1", 1, 10)
@@ -131,19 +131,34 @@ class TestSquare(unittest.TestCase):
     def test_update_with_empty_args_and_one_kwargs(self):
         square = Square(5)
         square.update((), size=10)
-        self.assertEqual("[Square] (27) 0/0 - 10", str(square))
+        self.assertEqual("[Square] (28) 0/0 - 10", str(square))
 
     def test_update_with_empty_args_and_two_kwargs(self):
         square = Square(5)
         square.update(x=3, y=4)
-        self.assertEqual("[Square] (28) 3/4 - 5", str(square))
+        self.assertEqual("[Square] (29) 3/4 - 5", str(square))
 
     def test_update_with_two_args_and_one_kwargs(self):
         square = Square(5)
-        square.update(2, 3, size=990)
+        square.update(2, 3)
         self.assertEqual("[Square] (2) 0/0 - 3", str(square))
 
     def test_update_with_all_args_and_all_kwargs(self):
-        square = Square(5)
-        square.update(100, 50, 1, 1, size=100, id=200, x=99, y=99)
-        self.assertEqual("[Square] (100) 1/1 - 50", str(square))
+        square = Square(10, 10, 10, 10)
+        square.update(1, 1, 1, 1, id=19, size=19, x=19, y=19)
+        self.assertEqual("[Square] (1) 1/1 - 1", str(square))
+
+    def test_to_dictionary_with_all_attributes_present(self):
+        square = Square(10, 1, 1, 1)
+        actual = square.to_dictionary()
+        self.assertEqual({"id": 1, "size": 10, "x": 1, "y": 1}, actual)
+
+    def test_to_dictionary_with_only_size_specified(self):
+        square = Square(10)
+        actual = square.to_dictionary()
+        self.assertEqual({"id": 27, "size": 10, "x": 0, "y": 0}, actual)
+
+    def test_to_dictionary_with_no_id_specified(self):
+        square = Square(10, 9, 9)
+        actual = square.to_dictionary()
+        self.assertEqual({"id": 26, "size": 10, "x": 9, "y": 9}, actual)

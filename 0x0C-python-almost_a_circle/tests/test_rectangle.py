@@ -143,3 +143,9 @@ class TestRectangle(unittest.TestCase):
         rect = Rectangle(10, 10, 10, 10)
         rect.update(1, 1, 1, 1, 1, id=19, width=19, height=19, x=19, y=19)
         self.assertEqual("[Rectangle] (1) 1/1 - 1/1", str(rect))
+
+    def test_to_dictionary_with_all_attributes_present(self):
+        rect = Rectangle(10, 2, 1, 1, 1)
+        actual = rect.to_dictionary()
+        self.assertEqual({"id": 1, "width": 10, "height": 2, "x": 1,
+                         "y": 1}, actual)

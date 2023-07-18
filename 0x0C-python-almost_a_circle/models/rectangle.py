@@ -187,3 +187,15 @@ class Rectangle(Base):
                 else self.x
             self.y = kwargs.get("y") if kwargs.get("y") is not None \
                 else self.y
+
+    def to_dictionary(self):
+        """
+        Returns dictionary representation for instance
+        of a rectangle.
+        """
+        return {
+                "x": self.x,
+                "y": self.y,
+                "id": self.id,
+                "width": self.width, "height": self.height
+        }
