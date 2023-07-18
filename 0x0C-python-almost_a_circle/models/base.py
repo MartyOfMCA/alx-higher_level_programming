@@ -120,3 +120,41 @@ class Base:
                 list_of_instances.append(cls.create(**instance))
 
         return (list_of_instances)
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        Serialize the given instances into a CSV
+        file.
+
+        Parameters
+        list_objs : list
+            The list of instances to serialize
+        """
+        file_name = "{}.csv".format(cls.__name__)
+        fil = None
+        obj_list = []
+
+        if (list_objs is not None):
+            if (len(list_objs) == 0):
+                raise ValueError("No instances available")
+            for obj in list_objs:
+                obj_list.append(obj.to_dictionary())
+
+        with open(file_name, "w") as file:
+            file.write(Base.to_json_string(obj_list))
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """ Deserializes CSV file into class instance """
+        file_name, csv_string = "", ""
+        list_of_instances = []
+
+        file_name = "{}.csv".format(cls.__name__)
+        if (isfile(file_name)):
+            with open(file_name, "r") as file:
+                csv_string = file.read()
+            for instance in Base.from_json_string(csv_string):
+                list_of_instances.append(cls.create(**instance))
+
+        return (list_of_instances)
