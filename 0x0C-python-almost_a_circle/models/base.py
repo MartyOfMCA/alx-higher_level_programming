@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ This module defines the Base class """
 import json
+from os.path import isfile
 
 
 class Base:
@@ -102,3 +103,18 @@ class Base:
         instance.update(**dictionary)
 
         return (instance)
+
+    @classmethod
+    def load_from_file(cls):
+        """ Returns a list of instances from files """
+        file_name, json_string = "", ""
+        list_of_instances = []
+
+        file_name = "{}.json".format(cls.__name__)
+        if (isfile(file_name)):
+            with open(file_name, "r") as file:
+                json_string = file.read()
+            for instance in Base.from_json_string(json_string):
+                list_of_instances.append(cls.create(**instance))
+
+        return (list_of_instances)

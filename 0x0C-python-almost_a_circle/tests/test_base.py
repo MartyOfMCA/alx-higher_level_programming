@@ -14,7 +14,7 @@ class TestBase(unittest.TestCase):
 
     def test_single_obj_without_id(self):
         base = Base()
-        self.assertEqual(4, base.id)
+        self.assertEqual(7, base.id)
 
     def test_two_obj_with_id(self):
         base = Base(10)
@@ -24,7 +24,7 @@ class TestBase(unittest.TestCase):
     def test_two_obj_with_first_id(self):
         base = Base(5)
         base2 = Base()
-        self.assertEqual(5, base2.id)
+        self.assertEqual(9, base2.id)
 
     def test_two_obj_with_second_id(self):
         base = Base()
@@ -34,7 +34,7 @@ class TestBase(unittest.TestCase):
     def test_two_obj_without_ids(self):
         base = Base()
         base2 = Base()
-        self.assertEqual(8, base2.id)
+        self.assertEqual(12, base2.id)
 
     def test_single_obj_with_neg_id(self):
         base = Base(-5)
@@ -88,3 +88,13 @@ class TestBase(unittest.TestCase):
         obj_dict = square.to_dictionary()
         square2 = Square.create(**obj_dict)
         self.assertEqual("[Square] (1) 5/1 - 3", str(square2))
+
+    def test_rectangle_load_from_file(self):
+        Rectangle.save_to_file([Rectangle(10, 7, 2, 8, 1), Rectangle(2, 4)])
+        actual = Rectangle.load_from_file()
+        self.assertEqual(2, len(actual))
+
+    def test_square_load_from_file(self):
+        Square.save_to_file([Square(5, 1, 1, 1)])
+        actual = Square.load_from_file()
+        self.assertEqual(1, len(actual))
