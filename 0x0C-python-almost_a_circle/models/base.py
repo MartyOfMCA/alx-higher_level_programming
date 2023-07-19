@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ This module defines the Base class """
 import json
+import csv
 from os.path import isfile
 
 
@@ -132,29 +133,48 @@ class Base:
             The list of instances to serialize
         """
         file_name = "{}.csv".format(cls.__name__)
-        fil = None
-        obj_list = []
+        file = None
+        obj_attributes = []
 
         if (list_objs is not None):
             if (len(list_objs) == 0):
                 raise ValueError("No instances available")
-            for obj in list_objs:
-                obj_list.append(obj.to_dictionary())
-
-        with open(file_name, "w") as file:
-            file.write(Base.to_json_string(obj_list))
+            with open(file_name, "w", encoding="utf-8") as file:
+                writer = csv.writer(file)
+                for obj in list_objs:
+                    obj_attributes.append(obj.id)
+                    if (cls.__name__ == "Rectangle"):
+                        obj_attributes.append(obj.width)
+                        obj_attributes.append(obj.height)
+                    else:
+                        obj_attributes.append(obj.size)
+                    obj_attributes.append(obj.x)
+                    obj_attributes.append(obj.y)
+                    writer.writerow(obj_attributes)
+                    obj_attributes = []
 
     @classmethod
     def load_from_file_csv(cls):
         """ Deserializes CSV file into class instance """
         file_name, csv_string = "", ""
         list_of_instances = []
+        obj_dict = {}
 
         file_name = "{}.csv".format(cls.__name__)
         if (isfile(file_name)):
-            with open(file_name, "r") as file:
-                csv_string = file.read()
-            for instance in Base.from_json_string(csv_string):
-                list_of_instances.append(cls.create(**instance))
+            with open(file_name, "r", encoding="utf-8") as file:
+                reader = csv.reader(file)
+                for row in reader:
+                    obj_dict["id"] = int(row[0])
+                    if (cls.__name__ == "Rectangle"):
+                        obj_dict["width"] = int(row[1])
+                        obj_dict["height"] = int(row[2])
+                        obj_dict["x"] = int(row[3])
+                        obj_dict["y"] = int(row[4])
+                    else:
+                        obj_dict["size"] = int(row[1])
+                        obj_dict["x"] = int(row[2])
+                        obj_dict["y"] = int(row[3])
+                    list_of_instances.append(cls.create(**obj_dict))
 
         return (list_of_instances)
