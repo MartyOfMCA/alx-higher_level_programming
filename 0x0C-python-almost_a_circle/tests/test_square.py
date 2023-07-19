@@ -162,3 +162,14 @@ class TestSquare(unittest.TestCase):
         square = Square(10, 9, 9)
         actual = square.to_dictionary()
         self.assertEqual({"id": 36, "size": 10, "x": 9, "y": 9}, actual)
+
+    def test_save_to_file_with_none(self):
+        text = Square.save_to_file(None)
+        self.assertEqual("[]", text)
+
+    def test_save_to_file_with_empty_list(self):
+        text = ""
+        Square.save_to_file([])
+        with open("Square.json") as file:
+            text = file.read()
+        self.assertEqual("[]", text)

@@ -177,7 +177,3 @@ class TestRectangle(unittest.TestCase):
         with open("Rectangle.json") as file:
             text = file.read()
         self.assertEqual("[]", text)
-
-    def test_save_to_file_with_empty_list(self):
-        with self.assertRaises(ValueError):
-            Rectangle.save_to_file([])

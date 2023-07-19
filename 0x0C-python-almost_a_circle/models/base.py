@@ -67,6 +67,9 @@ class Base:
         with open(file_name, "w") as file:
             file.write(Base.to_json_string(obj_list))
 
+        if (list_objs is None or list_objs == []):
+            return ("[]")
+
     @staticmethod
     def from_json_string(json_string):
         """
