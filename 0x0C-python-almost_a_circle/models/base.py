@@ -60,8 +60,6 @@ class Base:
         obj_list = []
 
         if (list_objs is not None):
-            if (len(list_objs) == 0):
-                raise ValueError("No instances available")
             for obj in list_objs:
                 obj_dict = obj.to_dictionary()
                 obj_list.append(obj_dict)
