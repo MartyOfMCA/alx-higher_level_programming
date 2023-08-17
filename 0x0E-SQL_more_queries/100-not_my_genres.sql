@@ -1,5 +1,5 @@
--- Retrieves all genres for the show
--- called Dexter
+-- Retrieves all genres for the shows
+-- not linked with the show called Dexter
 SELECT	name
 FROM	tv_genres
 WHERE	id NOT IN
