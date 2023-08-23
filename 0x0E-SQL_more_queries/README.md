@@ -9,7 +9,7 @@ This directory contains SQL scripts on some advanced SQL concepts. This project 
 * The distinct clause
 * Keys and relationships
 
-## Prequisites
+## Prerequisites
 To run scripts in this project you need to install:
 * MySQL Server 8.0.25 (or newer) [Download](https://www.mysql.com/downloads/)
 
